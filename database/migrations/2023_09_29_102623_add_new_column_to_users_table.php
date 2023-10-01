@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('phone')->nullable();
-            $table->string('status');
-            $table->bigInteger('role_id');
+            $table->string('status')->nullable();
+            $table->bigInteger('role_id')->nullable();
             $table->foreign('role_id')->references('id')->on('roles');
         });
     }
