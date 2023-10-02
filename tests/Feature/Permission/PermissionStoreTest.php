@@ -16,7 +16,7 @@ class PermissionStoreTest extends TestCase
     public function testStoreAdmin(): void
     {
         $permissions = Permission::factory()->create(['id' => 1]);
-        $role = Role::factory()->create()->permissions()->attach([1]);;
+        $role = Role::factory()->create()->permissions()->attach([1]);
         $user = User::factory()->create();
         $response = $this->actingAs($user)->post(route('permissions.store'), ['name' => 'Novosib']);
         $response->assertRedirect('/permissions');
@@ -25,7 +25,7 @@ class PermissionStoreTest extends TestCase
     public function testStoreNotAdmin(): void
     {
         $permissions = Permission::factory()->create(['id' => 1, 'name' => 'cannot']);
-        $role = Role::factory()->create()->permissions()->attach([1]);;
+        $role = Role::factory()->create()->permissions()->attach([1]);
         $user = User::factory()->create();
         $response = $this->actingAs($user)->post(route('permissions.store'), ['name' => 'Novosib']);
         $response->assertStatus(403);

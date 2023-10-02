@@ -16,9 +16,10 @@ class UserUpdateTest extends TestCase
     public function testUpdateUserAdminValid(): void
     {
         $permissions = Permission::factory()->create(['id' => 1, 'name' => 'can create user']);
-        $role = Role::factory()->create(['id' => 1, 'name' => 'hello'])->permissions()->attach([1]);;
+        $role = Role::factory()->create(['id' => 1, 'name' => 'hello'])->permissions()->attach([1]);
         $user = User::factory()->create();
-        $response = $this->actingAs($user)->put(route('users.update', 1), ['name' => 'Novosib', 'email' => 'emil11@mail.ru', 'password' => 'emil1111', 'status' => 'active', 'role_id' => 1]);
+        $response = $this->actingAs($user)->put(route('users.update', 1), ['name' => 'Novosib',
+        'email' => 'emil11@mail.ru', 'password' => 'emil1111', 'status' => 'active', 'role_id' => 1]);
         $this->assertDatabaseHas('users', [
             'name' => 'Novosib'
         ]);
@@ -29,7 +30,7 @@ class UserUpdateTest extends TestCase
     public function testUpdateUserNotAdmin(): void
     {
         $permissions = Permission::factory()->create(['id' => 1, 'name' => 'cannot create user']);
-        $role = Role::factory()->create(['id' => 1, 'name' => 'hello'])->permissions()->attach([1]);;
+        $role = Role::factory()->create(['id' => 1, 'name' => 'hello'])->permissions()->attach([1]);
         $user = User::factory()->create();
         $response = $this->actingAs($user)->put(route('users.update', 1), ['name' => 'Hexlet']);
         $response->assertStatus(403);

@@ -11,7 +11,9 @@ use App\Models\Role;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
 
     public $statuses = ['active' => 'active', 'passive' => 'passive'];
     /**

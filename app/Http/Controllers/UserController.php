@@ -8,11 +8,10 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-   
     public function index(User $user)
     {
         $users = User::orderBy('id')->paginate();
-        return view('users.index', ['users' => $users, 'user' => $user]);   
+        return view('users.index', ['users' => $users, 'user' => $user]);
     }
 
     /**
@@ -29,7 +28,6 @@ class UserController extends Controller
         return view('users.create', ['user' => $user, 'roles' => $roles, 'statuses' => $statuses]);
     }
 
-    
     public function store(Request $request)
     {
         $this->authorize('create', User::class);
@@ -47,7 +45,6 @@ class UserController extends Controller
             ->route('users.index')->with('success', 'User success create');
     }
 
-    
     public function show(User $user)
     {
         //

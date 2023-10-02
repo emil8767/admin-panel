@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AuthMiddleware
 {
-   
     public function handle($request, Closure $next)
     {
         if (Auth::check()) {

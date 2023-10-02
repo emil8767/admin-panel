@@ -16,12 +16,11 @@ class UserIndexTest extends TestCase
     public function testIndexMethodReturnsViewWithUsers()
     {
         $permissions = Permission::factory()->create(['id' => 1]);
-        $role = Role::factory()->create()->permissions()->attach([1]);;
+        $role = Role::factory()->create()->permissions()->attach([1]);
         $user = User::factory()->create();
         $response = $this->actingAs($user)->get('/users');
         $response->assertSee('Create user');
         $response->assertStatus(200);
-
     }
 
     public function testIndexMethodReturnsErrorIfNotAuth()
@@ -33,12 +32,11 @@ class UserIndexTest extends TestCase
     public function testIndexMethodUserCannotCreate()
     {
         $permissions = Permission::factory()->create(['id' => '1', 'name' => 'cannot create']);
-        $role = Role::factory()->create()->permissions()->attach([1]);;
+        $role = Role::factory()->create()->permissions()->attach([1]);
         $user = User::factory()->create();
         $response = $this->actingAs($user)->get('/users');
         $response->assertDontSeeText('Create users');
         $response->assertDontSeeText('update');
         $response->assertStatus(200);
-
     }
 }

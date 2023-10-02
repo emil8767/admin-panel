@@ -8,30 +8,11 @@ use Illuminate\Auth\Access\Response;
 
 class PermissionPolicy
 {
-    /**
-     * Determine whether the user can view any models.
-     */
-    public function viewAny(User $user): bool
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can view the model.
-     */
-    public function view(User $user, Permission $permission): bool
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can create models.
-     */
     public function create(User $user): bool
     {
         $permissons = $user->role->permissions;
         $result = [];
-        foreach($permissons as $permisson) {
+        foreach ($permissons as $permisson) {
             $result[] = $permisson->name;
         }
         return in_array('can create user', $result);
@@ -44,33 +25,9 @@ class PermissionPolicy
     {
         $permissons = $user->role->permissions;
         $result = [];
-        foreach($permissons as $permisson) {
+        foreach ($permissons as $permisson) {
             $result[] = $permisson->name;
         }
         return in_array('can create user', $result);
-    }
-
-    /**
-     * Determine whether the user can delete the model.
-     */
-    public function delete(User $user, Permission $permission): bool
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, Permission $permission): bool
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Permission $permission): bool
-    {
-        //
     }
 }

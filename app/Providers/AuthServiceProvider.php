@@ -8,8 +8,6 @@ use App\Models\Role;
 use App\Policies\RolePolicy;
 use App\Models\Permission;
 use App\Policies\PermissionPolicy;
-
-// use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider

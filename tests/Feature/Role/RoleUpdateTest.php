@@ -16,7 +16,7 @@ class RoleUpdateTest extends TestCase
     public function testUpdateRoleAdminValid(): void
     {
         $permissions = Permission::factory()->create(['id' => 1, 'name' => 'can create user']);
-        $role = Role::factory()->create(['id' => 1, 'name' => 'hello'])->permissions()->attach([1]);;
+        $role = Role::factory()->create(['id' => 1, 'name' => 'hello'])->permissions()->attach([1]);
         $user = User::factory()->create();
         $response = $this->actingAs($user)->put(route('roles.update', 1), ['name' => 'Hexlet', 'permission_id' => 1]);
         $this->assertDatabaseHas('roles', [
@@ -29,7 +29,7 @@ class RoleUpdateTest extends TestCase
     public function testUpdateRoleNotAdmin(): void
     {
         $permissions = Permission::factory()->create(['id' => 1, 'name' => 'cannot create user']);
-        $role = Role::factory()->create(['id' => 1, 'name' => 'hello'])->permissions()->attach([1]);;
+        $role = Role::factory()->create(['id' => 1, 'name' => 'hello'])->permissions()->attach([1]);
         $user = User::factory()->create();
         $response = $this->actingAs($user)->put(route('roles.update', 1), ['name' => 'Hexlet', 'permission_id' => 1]);
         $response->assertStatus(403);

@@ -16,32 +16,28 @@ class PermissionIndexTest extends TestCase
     public function testIndexMethodReturnsViewWithPermissions()
     {
         $permissions = Permission::factory()->create();
-        $role = Role::factory()->create()->permissions()->attach([1]);;
+        $role = Role::factory()->create()->permissions()->attach([1]);
         $user = User::factory()->create();
         $response = $this->actingAs($user)->get('/permissions');
         $response->assertSee('can create user');
         $response->assertStatus(200);
-
     }
 
     public function testIndexMethodReturnsErrorIfNotAuth()
     {
         $response = $this->get('/permissions');
         $response->assertStatus(302);
-
     }
 
     public function testIndexMethodUserCannotCreate()
     {
         $permissions = Permission::factory()->create(['id' => '1', 'name' => 'cannot create']);
-        $role = Role::factory()->create()->permissions()->attach([1]);;
+        $role = Role::factory()->create()->permissions()->attach([1]);
         $user = User::factory()->create();
         $response = $this->actingAs($user)->get('/permissions');
         $response->assertSee('cannot create');
         $response->assertDontSeeText('Create permission');
         $response->assertDontSeeText('update');
         $response->assertStatus(200);
-
     }
-   
 }
