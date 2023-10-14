@@ -1,0 +1,68 @@
+version: '3'
+services:
+    app:
+        build:
+            context: ./Docker
+            dockerfile: Dockerfile
+            args:
+                WWWGROUP: '${WWWGROUP}'
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        ports:
+            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+        environment:
+            WWWUSER: '${WWWUSER}'
+        volumes:
+            - '.:/var/www/html'
+        depends_on:
+            - mysql
+            - redis
+    nginx:
+        build:
+            context: ./Docker/nginx
+            args:
+                WEB_USER_ID: 1000
+                WEB_USER_NAME: 'dev'
+        volumes:
+            - ./public:/app/public:ro
+        ports:
+            - "127.0.0.1:80:80"
+        depends_on:
+            - app
+    mysql:
+        image: 'mysql/mysql-server:8.0'
+        ports:
+            - '${FORWARD_DB_PORT:-3306}:3306'
+        environment:
+            MYSQL_ROOT_HOST: '%'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        volumes:
+            - db_data:/data
+        healthcheck:
+            test:
+                - CMD
+                - mysqladmin
+                - ping
+                - '-p${DB_PASSWORD}'
+            retries: 3
+            timeout: 5s
+    redis:
+        image: 'redis:alpine'
+        ports:
+            - '${FORWARD_REDIS_PORT:-6379}:6379'
+        volumes:
+            - 'sail-redis:/data'
+        healthcheck:
+            test:
+                - CMD
+                - redis-cli
+                - ping
+            retries: 3
+            timeout: 5s
+volumes:
+    sail-mysql:
+        driver: local
+    sail-redis:
+        driver: local
+    db_data:

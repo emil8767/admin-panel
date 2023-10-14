@@ -52,6 +52,14 @@
                                 <a href="{{ route('permissions.index') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
                                     Permissions                                </a>
                             </li>
+                            <li>
+                                <a href="{{ route('testing') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
+                                    Testing                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('disbursement') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
+                                Disbursement                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
