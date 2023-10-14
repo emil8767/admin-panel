@@ -106,3 +106,5 @@ volumes:
         driver: local
     sail-meilisearch:
         driver: local
+
+    db_data:
