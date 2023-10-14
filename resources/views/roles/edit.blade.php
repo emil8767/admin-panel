@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="bg-white dark:bg-gray-900">
+<section class="bg-white bg-gray-900">
             <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
             <div class="grid col-span-full">
-    <h1 class="mb-5">Create role</h1>
+    <h1 class="mb-5">Update role</h1>
     @if ($errors->any())
     <div>
         <ul>
@@ -15,7 +15,7 @@
     </div>
 @endif
 
-    
+
 {{ Form::model($role, ['route' => ['roles.update', $role], 'method' => 'PATCH']) }}
 <div class="flex flex-col">
 <div>{{ Form::label('name', 'Name') }}</div>

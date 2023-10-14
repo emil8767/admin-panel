@@ -81,10 +81,10 @@ class RoleController extends Controller
             'description' => 'nullable',
             'permission_id' => 'required']);
 
-        $role->fill($data);
+        $role->update($data);
         $role->save();
         $permissions = $request->input('permission_id');
-        $role->permissions()->attach($permissions);
+        $role->permissions()->syncWithoutDetaching($permissions);
         return redirect()
             ->route('roles.index')->with('success', 'Role success update');
     }

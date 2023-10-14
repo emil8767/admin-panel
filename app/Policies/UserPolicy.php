@@ -14,16 +14,16 @@ class UserPolicy
         foreach ($permissons as $permisson) {
             $result[] = $permisson->name;
         }
-        return in_array('can create user', $result);
+        return in_array('can_create_user', $result);
     }
 
-    public function update(User $user, User $model): bool
+    public function update(User $user): bool
     {
         $permissons = $user->role->permissions;
         $result = [];
         foreach ($permissons as $permisson) {
             $result[] = $permisson->name;
         }
-        return in_array('can create user', $result);
+        return in_array('can_create_user', $result);
     }
 }

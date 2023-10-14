@@ -15,7 +15,7 @@ class RolePolicy
         foreach ($permissons as $permisson) {
             $result[] = $permisson->name;
         }
-        return in_array('can create user', $result);
+        return in_array('can_create_role', $result);
     }
 
     /**
@@ -28,6 +28,6 @@ class RolePolicy
         foreach ($permissons as $permisson) {
             $result[] = $permisson->name;
         }
-        return in_array('can create user', $result);
+        return in_array('can_create_role', $result);
     }
 }

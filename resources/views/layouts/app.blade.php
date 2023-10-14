@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="csrf-param" content="_token" />
-    <title>Service</title>
+    <title>OnLoan CRM</title>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <link rel="preload" as="style" href="https://php-task-manager-ru.hexlet.app/build/assets/app.8ad19020.css" /><link rel="modulepreload" href="https://php-task-manager-ru.hexlet.app/build/assets/app.42df0f0d.js" /><link rel="stylesheet" href="https://php-task-manager-ru.hexlet.app/build/assets/app.8ad19020.css" /><script type="module" src="https://php-task-manager-ru.hexlet.app/build/assets/app.42df0f0d.js"></script>
@@ -22,7 +22,7 @@
             <nav class="bg-white border-gray-200 py-2.5 dark:bg-gray-900 shadow-md">
                 <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
                     <a href="{{route('home')}}" class="flex items-center">
-                        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Service</span>
+                        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">OnLoan CRM</span>
                     </a>
                     @if(!Auth::check())
                     <div class="flex items-center lg:order-2">

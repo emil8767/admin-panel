@@ -15,7 +15,7 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
 
-    public $statuses = ['active' => 'active', 'passive' => 'passive'];
+    public $statuses = ['active' => 'enabled', 'not_active' => 'disabled'];
     /**
      * The attributes that are mass assignable.
      *

@@ -60,7 +60,7 @@ class UserController extends Controller
         ->mapWithKeys(function ($item, $key) {
             return [$item['id'] => $item['name']];
         })->all();
-        return view('users.edit', ['user' => $user, 'roles' => $roles]);
+        return view('users.edit', ['user' => $user, 'roles' => $roles, 'statuses' => $user->statuses])->withUser($user);
     }
 
     /**
@@ -68,14 +68,13 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $this->authorize('update', $user);
-        $data = $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|',
+        $validatedData = $this->validate($request, [
+            'name' => 'string|nullable',
+            'email' => 'email|nullable',
             'phone' => 'nullable',
-            'status' => 'required',
-            'role_id' => 'required',]);
-        $user->fill($data);
+            'status' => 'string|nullable',
+            'role_id' => 'integer|nullable',]);
+        $user->update($validatedData);
         $user->save();
         return redirect()
             ->route('users.index')->with('success', 'User success update');
