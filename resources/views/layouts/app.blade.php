@@ -60,6 +60,10 @@
                                 <a href="{{ route('disbursement') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
                                 Disbursement                                </a>
                             </li>
+                            <li>
+                                <a href="{{ route('payment-methods.index') }}" class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">
+                                    Payment methods                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

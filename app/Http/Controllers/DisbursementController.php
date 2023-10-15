@@ -17,7 +17,7 @@ class DisbursementController extends Controller
         if (in_array('can create user', $result)) {
         $apiUrl = config('app.disb_service');
         try {
-        $response = Http::get($apiUrl . '/api/job/list');
+        $response = [Http::get($apiUrl . '/api/job/list')];
         } catch (\Exception $e) {
             $response = [];
         }
