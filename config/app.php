@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
 return [
-    'api_url' => env('API_URL', 'http://localhost'),
-    'disb_service' => env('API_URL', 'http://localhost'),
+    'disb_service' => env('DISB_URL', 'http://20.203.104.111'),
     /*
     |--------------------------------------------------------------------------
     | Application Name

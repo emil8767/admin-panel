@@ -9,7 +9,7 @@ class PaymentMethod extends Model
 {
     use HasFactory;
 
-    public $statuses = ['true' => 'true', 'false' => 'false'];
+    public static $statuses = [true => 'true', false => 'false'];
 
     protected  $fillable = ['status', 'order', 'segment', 'name', 'max_error'];
 }

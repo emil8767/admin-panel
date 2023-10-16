@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PermissionController;
@@ -23,12 +24,18 @@ Route::middleware(['auth', 'auth.redirect'])->group(function () {
 });
 
 Route::middleware(['authservice', 'auth.redirect'])->group(function () {
-    Route::resource('payment-methods', \App\Http\Controllers\PaymentMethodController::class)->except(['destroy']);
+    Route::resource('payment-methods', PaymentMethodController::class)->except(['destroy']);
+    Route::post('payment-methods', [PaymentMethodController::class, 'updateNew'])->name('update-pm');
+    Route::get('payment-method/edit', [PaymentMethodController::class, 'editNew'])->name('update-pm-view');
     Route::resource('permissions', PermissionController::class)->except(['destroy']);
     Route::resource('roles', RoleController::class)->except(['destroy']);
     Route::resource('users', UserController::class)->except(['destroy']);
     Route::get('/disbursement', [DisbursementController::class, 'index'])->name('disbursement');
+    Route::get('/disbursement/edit', [DisbursementController::class, 'update'])->name('update-disb');
+    Route::post('/disbursement/edit', [DisbursementController::class, 'updatePost'])->name('update-disb-post');
+    Route::get('/disbursement/hist/{id}', [DisbursementController::class, 'disbHist'])->name('disb-hist');
     Route::get('/testing', [TestingController::class, 'index'])->middleware('env.check')->name('testing');
+    Route::post('/testing', [TestingController::class, 'send'])->middleware('env.check')->name('testing');
 });
 
 require __DIR__ . '/auth.php';

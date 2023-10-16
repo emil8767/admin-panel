@@ -16,15 +16,10 @@
                 @endif
 
 
-                {{ Form::model($paymentMethod, ['route' => ['update-pm'], 'method' => 'POST']) }}
+                {{ Form::model(null, ['route' => ['update-disb'], 'method' => 'POST']) }}
                 <div class="flex flex-col">
-                    <div class="mt-2">{{ Form::select('status', \App\Models\PaymentMethod::$statuses, [], ['placeholder' => 'Search status...', 'class' => 'rounded border-gray-300 w-1/3']) }}<br></div>
-                    <div class="mt-2">{{ Form::label('order', 'Order') }}</div>
-                    <div class="mt-2">{{ Form::number('order') }}<br></div>
-                    <div class="mt-2">{{ Form::label('segment', 'Segment') }}</div>
-                    <div class="mt-2">{{ Form::number('segment') }}<br></div>
-                    <div class="mt-2">{{ Form::label('max_error', 'Max error') }}</div>
-                    <div class="mt-2">{{ Form::number('max_error') }}<br></div>
+                    <div class="mt-2">{{ Form::select('status', ['done' => 'Done', 'new' => 'New'], [], ['placeholder' => 'Search status...', 'class' => 'rounded border-gray-300 w-1/3']) }}<br></div>
+                    <div class="mt-2">{{ Form::text('comments') }}<br></div>
                     <div class="mt-2">{{ Form::hidden('id', $id)}}<br></div>
 
                     <div class="mt-2">{{ Form::submit('Update', ['class' => "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"]) }}</div>
