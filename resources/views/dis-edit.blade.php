@@ -18,7 +18,8 @@
 
                 {{ Form::model(null, ['route' => ['update-disb'], 'method' => 'POST']) }}
                 <div class="flex flex-col">
-                    <div class="mt-2">{{ Form::select('status', ['done' => 'Done', 'new' => 'New'], [], ['placeholder' => 'Search status...', 'class' => 'rounded border-gray-300 w-1/3']) }}<br></div>
+                    <div class="mt-2">{{ Form::select('status', ['done' => 'Done', 'new' => 'New'], [], ['placeholder' => 'Select status...', 'class' => 'rounded border-gray-300 w-1/3']) }}<br></div>
+                    <div class="mt-2">{{ Form::label('Comments', 'Comment') }}</div>
                     <div class="mt-2">{{ Form::text('comments') }}<br></div>
                     <div class="mt-2">{{ Form::hidden('id', $id)}}<br></div>
 
