@@ -19,7 +19,7 @@
                 <th>Comments</th>
             </tr>
         </thead>
-        @if(count($data) > 1)
+        @if(count($data) > 0)
         @foreach($data as $payment)
         <tr class="border-b border-dashed text-left">
             <th></th>

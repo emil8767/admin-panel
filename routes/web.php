@@ -23,6 +23,7 @@ Route::middleware(['auth', 'auth.redirect'])->group(function () {
 });
 
 Route::middleware(['authservice', 'auth.redirect'])->group(function () {
+    Route::resource('payment-methods', \App\Http\Controllers\PaymentMethodController::class)->except(['destroy']);
     Route::resource('permissions', PermissionController::class)->except(['destroy']);
     Route::resource('roles', RoleController::class)->except(['destroy']);
     Route::resource('users', UserController::class)->except(['destroy']);
