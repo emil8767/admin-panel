@@ -28,6 +28,7 @@ Route::middleware(['authservice', 'auth.redirect'])->group(function () {
     Route::post('payment-methods', [PaymentMethodController::class, 'updateNew'])->name('update-pm');
     Route::get('payment-method/edit', [PaymentMethodController::class, 'editNew'])->name('update-pm-view');
     Route::resource('permissions', PermissionController::class)->except(['destroy']);
+    Route::delete('role_permission/{id1}/{id2}', [RoleController::class, 'destroy_role_permission'])->name('role_permission.destroy');
     Route::resource('roles', RoleController::class)->except(['destroy']);
     Route::resource('users', UserController::class)->except(['destroy']);
     Route::get('/disbursement', [DisbursementController::class, 'index'])->name('disbursement');

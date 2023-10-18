@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PermissionRole;
 use App\Models\Role;
 use App\Models\Permission;
 use Illuminate\Http\Request;
@@ -56,6 +57,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
+
         return view('roles.show', ['role' => $role]);
     }
 
@@ -94,8 +96,9 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Role $role)
+    public function destroy_role_permission($role_id, $permission_id)
     {
-        //
+        $role_permission = PermissionRole::where('role_id', $role_id)->where('permission_id', $permission_id)->delete();
+        return redirect()->route('roles.show', $role_id);
     }
 }
